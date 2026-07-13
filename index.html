@@ -249,22 +249,40 @@
   .quiz-section h2{color:var(--porcelain);font-size:clamp(2rem,4vw,3rem);line-height:1.05;margin-bottom:10px}
   .quiz-section .lead{font-size:16px;opacity:0.72;max-width:40ch;margin-bottom:32px;line-height:1.5}
 
-  .quiz-shell{max-width:620px}
+  .quiz-shell{max-width:720px}
+  /* decorative glow behind quiz card */
+  .quiz-section::after{
+    content:"";position:absolute;
+    width:440px;height:440px;
+    right:-110px;top:60px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(238,215,157,.13),transparent 65%);
+    pointer-events:none;z-index:0;
+  }
+  .quiz-section::before{
+    content:"";position:absolute;
+    width:300px;height:300px;
+    left:-80px;bottom:40px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(117,146,206,.09),transparent 65%);
+    pointer-events:none;z-index:0;
+  }
+  .quiz-section>*{position:relative;z-index:1}
   .qcard{background:var(--porcelain);color:var(--navy);border-radius:var(--radius-card);padding:28px;box-shadow:var(--shadow-soft)}
   .qnum{font-size:12px;font-weight:700;letter-spacing:0.06em;color:var(--wrapper-blue);margin-bottom:8px;text-transform:uppercase}
   .qtext{font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.3;margin-bottom:22px}
   .opt{
-    display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:var(--radius-card);
+    display:flex;align-items:center;gap:13px;padding:16px 18px;border-radius:var(--radius-card);
     border:1.5px solid var(--stone);background:var(--cream);cursor:pointer;width:100%;
     text-align:left;margin-bottom:9px;font-family:var(--font-body);font-size:15px;
-    transition:background .15s,border-color .15s;
+    transition:background .15s,border-color .15s,box-shadow .15s;
   }
-  .opt:hover{background:#E9E4DA;border-color:var(--sky-blue)}
-  .opt.sel{background:var(--wrapper-blue);border-color:var(--wrapper-blue)}
+  .opt:hover{background:#E9E4DA;border-color:var(--sky-blue);box-shadow:0 4px 14px rgba(28,45,95,0.07)}
+  .opt.sel{background:var(--butter);border-color:var(--gold);box-shadow:0 8px 20px rgba(47,29,29,0.10)}
   .opt .opt-text{color:var(--navy);font-weight:500}
-  .opt.sel .opt-text{color:var(--porcelain)}
-  .opt .letter{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--navy);color:var(--navy);opacity:0.55;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
-  .opt.sel .letter{color:var(--porcelain);border-color:var(--porcelain);opacity:1}
+  .opt.sel .opt-text{color:var(--dark-choc);font-weight:600}
+  .opt .letter{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--navy);color:var(--navy);opacity:0.55;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;transition:background .15s,border-color .15s,color .15s}
+  .opt.sel .letter{color:var(--dark-choc);border-color:var(--dark-choc);opacity:1;background:rgba(47,29,29,0.09)}
   .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
   .dots{display:flex;gap:7px}
   .dot{width:8px;height:8px;border-radius:50%;background:rgba(242,239,234,0.25)}
@@ -279,7 +297,7 @@
   .qbtn:disabled{opacity:0.35;cursor:default;transform:none;box-shadow:none}
 
   /* quiz result */
-  #qresult{display:none;max-width:620px}
+  #qresult{display:none;max-width:720px}
   .result-card{background:var(--porcelain);color:var(--navy);border-radius:var(--radius-card);padding:32px;box-shadow:var(--shadow-soft);text-align:center}
   /* prominent generated-photo frame */
   .rphoto{width:clamp(200px,60%,260px);aspect-ratio:1/1;margin:0 auto 20px;border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow-hover);border:1px solid rgba(28,45,95,0.08);background:var(--cream);position:relative}
@@ -348,7 +366,10 @@
     .intro-promise{font-size:clamp(19px,5vw,23px)}
   }
 
-  /* ---- quiz: baking progress ---- */
+  /* progress label row */
+  .bake-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .bake-q-label{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(238,215,157,0.7)}
+  .bake-pct-label{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--butter)}
   .bake-prog{margin-bottom:26px}
   .bake-track{position:relative;height:6px;background:rgba(242,239,234,0.18);border-radius:3px;margin:30px 0 12px}
   .bake-fill{height:100%;background:var(--butter);border-radius:3px;transition:width .5s ease;width:0%}
@@ -380,7 +401,7 @@
   .opt .crumbs i:nth-child(3){width:2px;height:2px}
 
   /* ---- quiz: reveal sequence ---- */
-  .reveal{max-width:620px;min-height:200px;display:flex;align-items:center;justify-content:center;background:var(--porcelain);border-radius:var(--radius-card);box-shadow:var(--shadow-soft);padding:48px 32px}
+  .reveal{max-width:720px;min-height:200px;display:flex;align-items:center;justify-content:center;background:var(--porcelain);border-radius:var(--radius-card);box-shadow:var(--shadow-soft);padding:48px 32px}
   .reveal-line{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,3.4vw,30px);line-height:1.25;color:var(--navy);text-align:center;opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
   .reveal-line.show{opacity:1;transform:translateY(0)}
 
@@ -557,8 +578,8 @@
     <div class="intro-card">
       <div class="intro-banner" id="introBanner"></div>
       <div class="intro-right">
-        <div class="intro-promise">Two minutes. No wrong answers. <em>Mildly haunted by accuracy.</em></div>
-        <button class="qbtn intro-start" onclick="startQuiz()">Bake mine <span class="arr">&rarr;</span></button>
+        <div class="intro-promise">Get your cookie name, flavour profile, and <em>uncomfortably accurate</em> personality read.</div>
+        <button class="qbtn intro-start" onclick="startQuiz()">Bake my personality <span class="arr">&rarr;</span></button>
         <div class="intro-meta">
           <span>A few questions</span><span class="dot-sep">&bull;</span><span>2 minutes</span><span class="dot-sep">&bull;</span><span>A personalized result</span>
         </div>
@@ -569,6 +590,10 @@
   <!-- question flow -->
   <div class="quiz-shell" id="quizShell" style="display:none">
     <div class="bake-prog" id="bakeProg">
+      <div class="bake-label-row">
+        <span class="bake-q-label" id="bakeQLabel">Question 1</span>
+        <span class="bake-pct-label" id="bakePctLabel">Just starting…</span>
+      </div>
       <div class="bake-track">
         <div class="bake-fill" id="bakeFill"></div>
         <div class="bake-cookie" id="bakeCookie">
@@ -601,7 +626,7 @@
       <div class="rphoto" id="rphoto">
         <div class="rphoto-inner" id="rphotoInner"></div>
       </div>
-      <div class="rlabel">Your cookie is</div>
+      <div class="rlabel">Your alter ego</div>
       <div class="rname" id="rname"></div>
       <div class="rtraits" id="rtraits"></div>
       <div class="rdesc" id="rdesc"></div>
@@ -610,7 +635,8 @@
 
       <div class="ractions">
         <button class="qbtn" onclick="seeQuizRecipe()">See recipe &rarr;</button>
-        <button class="qbtn-ghost" onclick="requestAddToCrew()">Request to add to crew</button>
+        <button class="qbtn-ghost" onclick="copyResult()">Copy result</button>
+        <button class="qbtn-ghost" onclick="requestAddToCrew()">Submit this cookie</button>
       </div>
     </div>
     <button class="restart" onclick="retake()">Re-enter the oven</button>
@@ -1566,12 +1592,28 @@ function startQuiz(){
   renderQ();
 }
 
+/* Enter key advances the quiz on desktop */
+document.addEventListener("keydown",function(e){
+  if(e.key==="Enter"&&document.getElementById("quizShell")&&document.getElementById("quizShell").style.display!=="none"){
+    var nb=document.getElementById("nextBtn");
+    if(nb&&!nb.disabled)advance();
+  }
+});
+
+var _autoAdvTimer=null;
 function selectOpt(btn,idx){
   qstate.selIdx=idx;
   var all=document.querySelectorAll(".opt");
   for(var i=0;i<all.length;i++)all[i].classList.remove("sel");
   btn.classList.add("sel");
   document.getElementById("nextBtn").disabled=false;
+  /* mobile auto-advance after 420ms */
+  if(_autoAdvTimer)clearTimeout(_autoAdvTimer);
+  if(window.innerWidth<760){
+    _autoAdvTimer=setTimeout(function(){
+      if(qstate.selIdx!==null)advance();
+    },420);
+  }
 }
 function renderDots(){
   var el=document.getElementById("dots");el.innerHTML="";
@@ -1593,6 +1635,12 @@ function updateBakeProgress(){
   document.getElementById("bakeCookie").style.left=shown+"%";
   var si=Math.min(BAKE_STAGES.length-1,step);
   document.getElementById("bakeStage").textContent=BAKE_STAGES[si];
+  /* new label row */
+  var ql=document.getElementById("bakeQLabel");
+  var pl=document.getElementById("bakePctLabel");
+  if(ql)ql.textContent="Question "+(step+1);
+  var pctLabels=["Just starting…","Getting warm…","Halfway there…","Almost baked","Final sprinkle","Almost done…","Taste test…"];
+  if(pl)pl.textContent=pctLabels[Math.min(pctLabels.length-1,step)];
 }
 function renderQ(){
   var node=QTREE[qstate.qid];
@@ -1683,9 +1731,7 @@ function runReveal(){
   document.getElementById("bakeCookie").style.left="100%";
   document.getElementById("bakeStage").textContent="Taste test\u2026";
   var lines=[
-    "Your dough is mixed\u2026",
-    (c.filling?"A hidden centre is going in\u2026":"Your mix-ins are suspiciously specific\u2026"),
-    "Cooling\u2026",
+    (c.filling?"Your hidden centre is going in\u2026":"Your mix-ins are suspiciously specific\u2026"),
     "Your cookie is\u2026"
   ];
   document.getElementById("quizShell").style.display="none";
@@ -1699,8 +1745,8 @@ function runReveal(){
     void line.offsetWidth;
     line.classList.add("show");
     i++;
-    if(i<lines.length){setTimeout(show,1050);}
-    else{setTimeout(function(){rv.style.display="none";renderResult();},1100);}
+    if(i<lines.length){setTimeout(show,1100);}
+    else{setTimeout(function(){rv.style.display="none";renderResult();},900);}
   }
   show();
 }
@@ -1872,6 +1918,25 @@ function requestAddToCrew(){
   var href="mailto:felicitas.schmittinger@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
   window.location.href=href;
   showToast("Opening your email app with the details…");
+}
+
+function copyResult(){
+  if(!lastResult)return;
+  var c=lastResult.cookie;
+  var text="My Cookie Crew alter ego: "+lastResult.name+"\n"+
+    (lastResult.quote||"")+"\n\n"+
+    "Base: "+c.dough.name+"\n"+
+    (c.filling?"Filling: "+c.filling.name+"\n":"Mix-ins: "+c.mixins.map(function(m){return m.name}).join(", ")+"\n")+
+    "Topping: "+c.topping.name+"\n\n"+
+    "cookiecrew.com";
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){showToast("Result copied to clipboard.");});
+  } else {
+    var ta=document.createElement("textarea");
+    ta.value=text;document.body.appendChild(ta);ta.select();
+    document.execCommand("copy");document.body.removeChild(ta);
+    showToast("Result copied to clipboard.");
+  }
 }
 
 function retake(){
